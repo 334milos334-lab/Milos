@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miticx 23 | Premium Obuća</title>
+    <!-- Google Fontovi -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome ikonice -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #00a8ff;
+            --primary-blue-hover: #0097e6;
+            --dark-bg: #0f1016;
+            --card-bg: #181925;
+            --text-color: #f5f6fa;
+            --text-muted: #dcdde1;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(24, 25, 37, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 168, 255, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-color);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--primary-blue);
+        }
+
+        .store-info {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .store-info div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .store-info i {
+            color: var(--primary-blue);
+        }
+
+        /* HERO SEKCIJA */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(15, 16, 22, 0.7), rgba(15, 16, 22, 0.9)), url('https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary-blue);
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .btn {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0, 168, 255, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-blue-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 168, 255, 0.6);
+        }
+
+        /* KATALOG PROIZVODA */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .section-title span {
+            color: var(--primary-blue);
+            position: relative;
+        }
+
+        .section-title span::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-blue);
+            border-radius: 2px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 25px rgba(0, 168, 255, 0.2);
+        }
+
+        .card-img-container {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img-container img {
+            transform: scale(1.1);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .card-btn {
+            width: 100%;
+            padding: 10px;
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .card:hover .card-btn {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        /* MODAL (DETALJI PROIZVODA) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--primary-blue);
+            box-shadow: 0 15px 35px rgba(0,168,255,0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            color: var(--text-muted);
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--primary-blue);
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            min-height: 350px;
+        }
+
+        .modal-details {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-details h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .modal-details .price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .modal-details p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--card-bg);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        footer span {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            .modal-content {
+                grid-template-columns: 1fr;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            .modal-img {
+                min-height: 200px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">MITICX <span>23</span></div>
+            <div class="store-info">
+                <div><i class="fa-solid fa-location-dot"></i> Miticx 23</div>
+                <div><i class="fa-solid fa-clock"></i> Radno vreme: do 18:00h</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SEKCIJA -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Dobrodošli u <span>Mitica 23</span></h1>
+            <p>Najmodernija kolekcija obuće za svaku priliku. Izaberite svoj stil.</p>
+            <a href="#katalog" class="btn">Pogledaj Kolekciju</a>
+        </div>
+    </section>
+
+    <!-- KATALOG (10 VRSTA OBUĆE) -->
+    <div class="container" id="katalog">
+        <h2 class="section-title">Naša <span>Ponuda</span></h2>
+        
+        <div class="grid" id="productGrid">
+            <!-- Proizvodi se automatski ubacuju putem JS-a radi lakše kontrole -->
+        </div>
+    </div>
+
+    <!-- MODAL PROZOR ZA DETALJE -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeModal">&times;</span>
+            <img id="modalImg" class="modal-img" src="" alt="Obuća">
+            <div class="modal-details">
+                <h2 id="modalTitle">Naziv modela</h2>
+                <div class="price" id="modalPrice">0 RSD</div>
+                <p id="modalDesc">Detaljan opis modela, vrhunski materijali, udobnost i dugotrajnost prilagođena savremenom tempu života.</p>
+                <button class="btn" onclick="alert('Uspešno sačuvano/rezervisano! Posetite nas na adresi Miticx 23 do 18h.')">Naruči / Rezerviši</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 <span>Mitica 23</span>. Sva prava zadržana. | Adresa: Miticx 23 | Radno vreme: Do 18:00h</p>
+    </footer>
+
+    <!-- JAVASCRIPT ZA INTERAKTIVNOST -->
+    <script>
+        // Podaci za 10 vrsta obuće
+        const products = [
+            { id: 1, title: "Urban Street Runner", price: "8.990 RSD", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80", desc: "Moderne sportske patike jarkih boja sa anatomskim đonom za maksimalnu udobnost tokom celog dana." },
+            { id: 2, title: "Classic White Sneaker", price: "7.490 RSD", img: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80", desc: "Klasične bele patike koje se lako uklapaju uz svaki garderober i stil oblačenja." },
+            { id: 3, title: "Night Rider Black", price: "9.500 RSD", img: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=600&q=80", desc: "Elegantne crne patike sa unikatnim plavim detaljima. Savršen spoj sportskog i elegantnog stila." },
+            { id: 4, title: "Executive Leather Oxford", price: "12.200 RSD", img: "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=600&q=80", desc: "Ručno rađene kožne cipele za poslovne prilike i svečane momente. Vrhunski kvalitet kože." },
+            { id: 5, title: "Active Sport Flex", price: "6.990 RSD", img: "https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=600&q=80", desc: "Lagane patike namenjene za trčanje, teretanu i svakodnevne sportske aktivnosti." },
+            { id: 6, title: "Urban Casual Sneaker", price: "7.990 RSD", img: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80", desc: "Stilizovana obuća za gradske šetnje. Pruža izuzetnu mekoću i savremen dizajn." },
+            { id: 7, title: "Winter Comfort Boot", price: "11.500 RSD", img: "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?auto=format&fit=crop&w=600&q=80", desc: "Tople i nepromočive čizme za hladnije dane, dizajnirane da izdrže sve vremenske uslove." },
+            { id: 8, title: "Retro Vintage Kicks", price: "8.490 RSD", img: "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?auto=format&fit=crop&w=600&q=80", desc: "Inspirisane retro stilom 90-ih godina, ove patike predstavljaju pravi modni hit." },
+            { id: 9, title: "Minimalist Slip-On", price: "6.500 RSD", img: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80", desc: "Obuća bez pertli koja se lako i brzo obuva. Idealna za brze letnje i prolećne izlaske." },
+            { id: 10, title: "Elite Sport Master", price: "10.900 RSD", img: "https://images.unsplash.com/photo-1575537302964-96cd47c06b1b?auto=format&fit=crop&w=600&q=80", desc: "Vrhunski sportski model sa naprednim sistemom amortizacije udara pri hodu i trčanju." }
+        ];
+
+        const productGrid = document.getElementById('productGrid');
+        const modal = document.getElementById('productModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalDesc = document.getElementById('modalDesc');
+
+        // Kreiranje kartica proizvoda u HTML-u
+        products.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-img-container">
+                    <img src="${product.img}" alt="${product.title}">
+                </div>
+                <div class="card-body">
+                    <div class="card-title">${product.title}</div>
+                    <div class="card-price">${product.price}</div>
+                    <button class="card-btn">Pogledaj detalje</button>
+                </div>
+            `;
+
+            // Klik na karticu otvara modal sa animacijom
+            card.addEventListener('click', () => {
+                modalImg.src = product.img;
+                modalTitle.textContent = product.title;
+                modalPrice.textContent = product.price;
+                modalDesc.textContent = product.desc;
+                modal.style.display = 'flex';
+            });
+
+            productGrid.appendChild(card);
+        });
+
+        // Zatvaranje modala
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
